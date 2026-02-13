@@ -7,55 +7,56 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; display: flex; justify-content: center; }
         .card { width: 100%; max-width: 450px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        
-        /* Logo Styles */
         .logo-container { text-align: center; margin-bottom: 20px; }
-        .logo-container img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #075E54; padding: 5px; }
-        
-        h2 { text-align: center; color: #1a1a1a; margin-bottom: 5px; margin-top: 10px; }
+        .logo-container img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
+        h2 { text-align: center; color: #1a1a1a; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
         .hidden { display: none; }
         label { display: block; margin-top: 15px; font-weight: 600; color: #444; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .btn { width: 100%; background: #075E54; color: white; padding: 16px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; }
-        #orderSlip { border: 2px solid #333; padding: 20px; background: #fff; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 1em; }
+        .btn { width: 100%; background: #075E54; color: white; padding: 16px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #128C7E; }
+        
+        /* Slip Styling */
+        #orderSlip { border: 2px solid #333; padding: 20px; background: #fff; margin-top: 10px; }
         .slip-header { text-align: center; border-bottom: 2px solid #333; margin-bottom: 15px; padding-bottom: 10px; }
         .slip-row { display: flex; justify-content: space-between; margin: 10px 0; font-size: 0.95em; }
-        .total-box { background: #f9f9f9; padding: 10px; border-top: 2px solid #333; margin-top: 10px; font-weight: bold; font-size: 1.1em; }
-        .verified-stamp { color: #27ae60; font-weight: bold; text-align: center; border: 2px solid #27ae60; width: fit-content; margin: 10px auto; padding: 5px 15px; transform: rotate(-5deg); }
+        .total-box { background: #f9f9f9; padding: 12px; border-top: 2px solid #333; margin-top: 10px; font-weight: bold; font-size: 1.15em; }
+        .verified-stamp { color: #27ae60; font-weight: bold; text-align: center; border: 2px solid #27ae60; width: fit-content; margin: 10px auto; padding: 5px 15px; transform: rotate(-5deg); text-transform: uppercase; }
+        .policy-text { font-size: 0.75em; color: #777; text-align: center; margin-top: 15px; line-height: 1.4; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="logo-container">
-        <img src="logo.jpeg">
+        <img src="https://i.postimg.cc/tJ94S8rT/logo.jpg" alt="Muhammad Collections Logo">
     </div>
 
     <div id="formSection">
         <h2>Muhammad Collections</h2>
-        <p style="text-align:center; color:#666;">Premium Malai Boski Order Form</p>
+        <p style="text-align:center; color:#666; font-size: 0.9em; margin-top: 0;">Premium Malai Boski Order Form</p>
 
         <label>Full Name</label>
-        <input type="text" id="name" placeholder="Enter Name" required>
+        <input type="text" id="name" placeholder="Enter your name" required>
 
         <label>Suit Length</label>
         <select id="length">
-            <option value="4.0" data-price="2400">4.0 Meters (2,400 PKR)</option>
-            <option value="4.5" data-price="2600" selected>4.5 Meters (2,600 PKR)</option>
-            <option value="5.0" data-price="2800">5.0 Meters (2,800 PKR)</option>
+            <option value="4.0" data-price="2400">4.0 Meters (Standard - 2,400 PKR)</option>
+            <option value="4.5" data-price="2600" selected>4.5 Meters (Large - 2,600 PKR)</option>
+            <option value="5.0" data-price="2800">5.0 Meters (Extra Large - 2,800 PKR)</option>
         </select>
 
         <label>Select Color</label>
         <select id="color">
             <option>Black Gul Ahmed</option>
-            <option>Navy Blue</option>
-            <option>Seafoam Green</option>
-            <option>Beige</option>
-            <option>Cream/Classic</option>
+            <option>Navy Blue Boski</option>
+            <option>Seafoam Green Boski</option>
+            <option>Beige Boski</option>
+            <option>Cream/Classic Boski</option>
         </select>
 
         <label>Shipping Address</label>
-        <input type="text" id="address" placeholder="Full Address" required>
+        <input type="text" id="address" placeholder="City, Area, House No." required>
 
         <label>Promo Code</label>
         <input type="text" id="promo" placeholder="Enter code for 600rs discount">
@@ -66,70 +67,96 @@
     <div id="slipSection" class="hidden">
         <div id="orderSlip">
             <div class="slip-header">
-                <h3>MUHAMMAD COLLECTIONS</h3>
-                <p>Official Invoice #<span id="orderID"></span></p>
+                <h3 style="margin:0;">MUHAMMAD COLLECTIONS</h3>
+                <p style="margin:5px 0; font-size: 0.8em; color: #555;">Official Invoice #<span id="orderID"></span></p>
             </div>
+            
             <div class="verified-stamp">ORDER READY</div>
+
             <div class="slip-row"><strong>Customer:</strong> <span id="slipName"></span></div>
+            <div class="slip-row"><strong>Color:</strong> <span id="slipColor"></span></div>
             <div class="slip-row"><strong>Cutting:</strong> <span id="slipLength"></span></div>
             <div class="slip-row"><strong>Promo:</strong> <span id="slipPromo"></span></div>
+            <div class="slip-row"><strong>Delivery:</strong> <span style="color:green;">FREE</span></div>
+
             <div class="total-box">
-                <div class="slip-row"><span>Total Bill:</span> <span id="slipTotal"></span></div>
+                <div class="slip-row" style="margin:0;"><span>TOTAL BILL:</span> <span id="slipTotal"></span></div>
             </div>
-            <p style="font-size: 0.7em; text-align: center;">Delivery: FREE | Policy: 3-Day Exchange Only</p>
         </div>
+        
         <button class="btn" onclick="sendToWhatsApp()" style="background:#25D366;">CONTINUE TO WHATSAPP</button>
+        
+        <div class="policy-text">
+            <strong>3-Day Exchange Only</strong><br>
+            Strictly no returns or refunds. Fabric must be unstitched.
+        </div>
     </div>
 </div>
 
 <script>
+    // Generates a unique ID for each order
     function generateID() {
         return 'MC-' + Math.floor(1000 + Math.random() * 9000);
     }
 
     function processOrder() {
+        const nameInput = document.getElementById('name').value;
+        const addressInput = document.getElementById('address').value;
+
+        if(!nameInput || !addressInput) {
+            alert("Please enter your name and address.");
+            return;
+        }
+
         const lengthSelect = document.getElementById('length');
         const basePrice = parseInt(lengthSelect.options[lengthSelect.selectedIndex].getAttribute('data-price'));
         const promo = document.getElementById('promo').value;
-        const promoCodes = ["19081", "19161", "19129", "19009", "19067"];
         
-        const finalPrice = (promo && promoCodes.includes(promo)) ? (basePrice - 600) : basePrice;
+        // Validation for your 5 specific promo codes
+        const validCodes = ["19081", "19161", "19129", "19009", "19067"];
+        const finalPrice = (promo && validCodes.includes(promo)) ? (basePrice - 600) : basePrice;
 
+        // Fill Slip Data
         document.getElementById('orderID').innerText = generateID();
-        document.getElementById('slipName').innerText = document.getElementById('name').value;
+        document.getElementById('slipName').innerText = nameInput;
+        document.getElementById('slipColor').innerText = document.getElementById('color').value;
         document.getElementById('slipLength').innerText = lengthSelect.value + " Meters";
-        document.getElementById('slipPromo').innerText = (promo && promoCodes.includes(promo)) ? "Applied (-600)" : "None";
-        document.getElementById('slipTotal').innerText = finalPrice + " PKR";
+        document.getElementById('slipPromo').innerText = (promo && validCodes.includes(promo)) ? promo : "None";
+        document.getElementById('slipTotal').innerText = finalPrice.toLocaleString() + " PKR";
 
+        // Switch View
         document.getElementById('formSection').classList.add('hidden');
         document.getElementById('slipSection').classList.remove('hidden');
+        window.scrollTo(0, 0);
     }
 
     function sendToWhatsApp() {
         const name = document.getElementById('name').value;
         const color = document.getElementById('color').value;
         const length = document.getElementById('length').value;
-        const promo = document.getElementById('promo').value;
         const total = document.getElementById('slipTotal').innerText;
         const id = document.getElementById('orderID').innerText;
+        const promo = document.getElementById('promo').value || "None";
         const address = document.getElementById('address').value;
 
-        // Remember to replace with your actual WhatsApp number
-        const myPhone = "923172582336"; 
+        // --- REPLACE THE NUMBER BELOW WITH YOUR ACTUAL WHATSAPP NUMBER ---
+        const myPhone = "923XXXXXXXXX"; 
 
-        const message = `*ORDER ${id} - MUHAMMAD COLLECTIONS*%0A` +
+        const message = `*NEW ORDER: ${id}*%0A` +
                         `--------------------------%0A` +
+                        `*Brand:* Muhammad Collections%0A` +
                         `*Customer:* ${name}%0A` +
-                        `*Address:* ${address}%0A` +
                         `*Color:* ${color}%0A` +
                         `*Cutting:* ${length} Meters%0A` +
-                        `*Total Bill:* ${total}%0A` +
-                        `*Promo Code:* ${promo || "N/A"}%0A` +
+                        `*Address:* ${address}%0A` +
+                        `*Promo:* ${promo}%0A` +
+                        `*Final Bill:* ${total}%0A` +
                         `--------------------------%0A` +
                         `Please confirm my order.`;
 
         window.open(`https://wa.me/${myPhone}?text=${message}`, '_blank');
     }
 </script>
+
 </body>
 </html>

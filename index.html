@@ -3,203 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Collections | Order Portal</title>
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
+    <title>Muhammad Collections | Premium Tradition</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; display: flex; justify-content: center; }
-        .card { width: 100%; max-width: 480px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .logo-container { text-align: center; margin-bottom: 20px; }
-        .logo-container img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
-        h2 { text-align: center; color: #1a1a1a; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .hidden { display: none; }
-        label { display: block; margin-top: 15px; font-weight: 600; color: #444; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 1em; }
-        
-        .btn { width: 100%; background: #075E54; color: white; padding: 16px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 15px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #128C7E; }
-        .btn-download { background: #333; margin-top: 10px; }
+        /* General Styles */
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: 2px; }
+        a { text-decoration: none; color: inherit; }
 
-        /* Slip Styling */
-        #orderSlip { border: 2px solid #333; padding: 25px; background: #fff; margin-top: 10px; position: relative; }
-        .slip-header { text-align: center; border-bottom: 2px solid #333; margin-bottom: 15px; padding-bottom: 10px; }
-        .slip-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 0.95em; }
-        .total-box { background: #f9f9f9; padding: 12px; border-top: 2px solid #333; margin-top: 10px; font-weight: bold; font-size: 1.15em; }
-        .verified-stamp { color: #27ae60; font-weight: bold; text-align: center; border: 2px solid #27ae60; width: fit-content; margin: 5px auto; padding: 5px 15px; transform: rotate(-5deg); text-transform: uppercase; font-size: 1.2em; }
-        
-        .policy-box { font-size: 0.75em; color: #555; background: #fff8e1; padding: 15px; border-radius: 8px; margin-top: 20px; line-height: 1.5; border-left: 4px solid #ffc107; }
-        .screenshot-note { text-align: center; font-weight: bold; color: #d32f2f; margin-top: 10px; font-size: 0.9em; }
+        /* Announcement Bar */
+        .announcement { background: #000; color: #fff; text-align: center; padding: 10px; font-size: 13px; letter-spacing: 1px; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; sticky: top; background: white; }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 4px; }
+        .menu a { margin: 0 15px; font-weight: bold; font-size: 14px; }
+
+        /* Hero Banner */
+        .hero { height: 60vh; background: #f4f4f4; display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column; }
+        .hero h1 { font-size: 45px; margin-bottom: 10px; }
+        .btn { border: 1px solid #000; padding: 12px 30px; display: inline-block; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background: #000; color: #fff; }
+
+        /* Category Grid */
+        .category-grid { display: flex; gap: 20px; padding: 50px 5%; }
+        .category-item { flex: 1; height: 400px; background: #eee; position: relative; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; border: 1px solid #ddd; }
+        .category-item:hover { border-color: #000; }
+        .cat-label { background: rgba(255,255,255,0.9); width: 100%; padding: 20px; text-align: center; }
+
+        /* Review Section */
+        .reviews { padding: 60px 5%; background: #f9f9f9; text-align: center; }
+        .review-form { max-width: 600px; margin: 30px auto; text-align: left; background: #fff; padding: 30px; border: 1px solid #eee; }
+        .review-form input, .review-form textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; }
+        .stars { color: #d4af37; font-size: 25px; cursor: pointer; }
+
+        /* Footer */
+        footer { background: #000; color: #fff; padding: 40px 5%; text-align: center; }
+        .social-links a { color: #fff; margin: 0 10px; font-size: 20px; }
+
+        @media (max-width: 768px) { .category-grid { flex-direction: column; } }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="logo-container">
-        <img src="https://i.postimg.cc/tJ94S8rT/logo.jpg" alt="Muhammad Collections Logo">
-    </div>
+    <div class="announcement">FREE SHIPPING FOR ORDERS EXCEEDING RS 4,999</div>
 
-    <div id="formSection">
-        <h2>Muhammad Collections</h2>
-        <p style="text-align:center; color:#666; font-size: 0.85em; margin-top: 0;">Premium Malai Boski Order Portal</p>
-
-        <label>Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name" required>
-
-        <label>Select Color</label>
-        <select id="color">
-            <option>Black Gul Ahmed</option>
-            <option>Navy Blue Boski</option>
-            <option>Seafoam Green Boski</option>
-            <option>Beige Boski</option>
-            <option>Cream/Classic Boski</option>
-        </select>
-
-        <div style="display: flex; gap: 10px;">
-            <div style="flex: 2;">
-                <label>Suit Length</label>
-                <select id="length">
-                    <option value="4.0" data-price="2400">4.0 Meters (2,400 PKR)</option>
-                    <option value="4.5" data-price="2600" selected>4.5 Meters (2,600 PKR)</option>
-                    <option value="5.0" data-price="2800">5.0 Meters (2,800 PKR)</option>
-                </select>
-            </div>
-            <div style="flex: 1;">
-                <label>Quantity</label>
-                <input type="number" id="qty" value="1" min="1">
-            </div>
+    <nav>
+        <div class="logo">MUHAMMAD COLLECTIONS</div>
+        <div class="menu">
+            <a href="#men">MEN</a>
+            <a href="#women">WOMEN</a>
+            <a href="#kids">KIDS</a>
         </div>
+    </nav>
 
-        <label>Shipping Address</label>
-        <input type="text" id="address" placeholder="City, Area, House No." required>
+    <section class="hero">
+        <h1>TIMELESS TRADITION</h1>
+        <p>Premium Pakistani Attire for the Whole Family</p>
+        <a href="#men" class="btn">SHOP NOW</a>
+    </section>
 
-        <label>Promo Code</label>
-        <input type="text" id="promo" placeholder="Enter code (if any)">
-
-        <button type="button" class="btn" onclick="processOrder()">GENERATE ORDER SLIP</button>
-    </div>
-
-    <div id="slipSection" class="hidden">
-        <div id="captureArea">
-            <div id="orderSlip">
-                <div class="slip-header">
-                    <h3 style="margin:0;">MUHAMMAD COLLECTIONS</h3>
-                    <p style="margin:5px 0; font-size: 0.8em;">Official Digital Invoice</p>
-                    <small>Order ID: <span id="slipID"></span></small>
-                </div>
-                
-                <div class="verified-stamp">ORDER READY</div>
-
-                <div class="slip-row"><span>Customer:</span> <strong id="slipName"></strong></div>
-                <div class="slip-row"><span>Fabric:</span> <span id="slipColor"></span></div>
-                <div class="slip-row"><span>Cutting:</span> <span id="slipLength"></span></div>
-                <div class="slip-row"><span>Quantity:</span> <span id="slipQty"></span></div>
-                <div class="slip-row"><span>Promo:</span> <span id="slipPromo"></span></div>
-                <div class="slip-row"><span>Delivery:</span> <span style="color:green;">FREE SHIPPING</span></div>
-
-                <div class="total-box">
-                    <div class="slip-row" style="margin:0;"><span>TOTAL BILL:</span> <span id="slipTotal"></span></div>
-                </div>
-                
-                <p style="font-size: 0.6em; text-align: center; margin-top: 15px; color: #888;">Thank you for shopping with Muhammad Collections!</p>
-            </div>
+    <section class="category-grid">
+        <div class="category-item" id="men">
+            <div class="cat-label"><h3>MEN</h3><p>Shalwar Kameez</p></div>
         </div>
-
-        <p class="screenshot-note">📸 Please Screenshot or Download this slip!</p>
-        
-        <button class="btn btn-download" onclick="downloadSlip()">DOWNLOAD SLIP IMAGE</button>
-        <button class="btn" onclick="sendToWhatsApp()" style="background:#25D366;">SEND VIA WHATSAPP</button>
-        
-        <div class="policy-box">
-            <strong>Terms & Conditions:</strong><br>
-            🔄 <strong>3-Day Exchange:</strong> If the shade isn't perfect, exchange within 3 days. Fabric must be unstitched.<br>
-            🚚 <strong>Exchange Fee:</strong> 135 PKR delivery charges apply for exchange orders.<br>
-            ❌ <strong>No Refunds:</strong> Strictly no returns or cash refunds.
+        <div class="category-item" id="women">
+            <div class="cat-label"><h3>WOMEN</h3><p>3-Piece Luxury Suits</p></div>
         </div>
-    </div>
-</div>
+        <div class="category-item" id="kids">
+            <div class="cat-label"><h3>KIDS</h3><p>Festive Wear</p></div>
+        </div>
+    </section>
 
-<script>
-    // --- CONFIGURATION ---
-    const PUBLIC_KEY = "qLN3VE09GqCkYt_pT";
-    const SERVICE_ID = "service_oftxa1f";
-    const TEMPLATE_ID = "template_mar3ztq";
-    const MY_PHONE = "923172582336"; 
+    <section class="reviews">
+        <h2>CUSTOMER REVIEWS</h2>
+        <div class="review-form">
+            <h3>Leave a Review</h3>
+            <div class="stars">★★★★★</div>
+            <input type="text" placeholder="Your Name">
+            <textarea placeholder="Your Experience..."></textarea>
+            <button class="btn" style="width:100%" onclick="alert('Review submitted for approval!')">SUBMIT</button>
+        </div>
+    </section>
 
-    (function() { emailjs.init(PUBLIC_KEY); })();
-
-    function processOrder() {
-        const name = document.getElementById('name').value;
-        const address = document.getElementById('address').value;
-        const qty = parseInt(document.getElementById('qty').value);
-
-        if(!name || !address || qty < 1) {
-            alert("Please complete all fields correctly.");
-            return;
-        }
-
-        const lenEl = document.getElementById('length');
-        const basePrice = parseInt(lenEl.options[lenEl.selectedIndex].getAttribute('data-price'));
-        const promo = document.getElementById('promo').value;
-        
-        const validCodes = ["19081", "19161", "19129", "19009", "19067"];
-        const unitPrice = (promo && validCodes.includes(promo)) ? (basePrice - 600) : basePrice;
-        const totalBill = unitPrice * qty;
-
-        // Fill Slip
-        document.getElementById('slipID').innerText = 'MC-' + Math.floor(1000 + Math.random() * 9000);
-        document.getElementById('slipName').innerText = name;
-        document.getElementById('slipColor').innerText = document.getElementById('color').value;
-        document.getElementById('slipLength').innerText = lenEl.value + " Meters";
-        document.getElementById('slipQty').innerText = qty;
-        document.getElementById('slipPromo').innerText = (validCodes.includes(promo)) ? promo : "None";
-        document.getElementById('slipTotal').innerText = totalBill.toLocaleString() + " PKR";
-
-        // Toggle View
-        document.getElementById('formSection').classList.add('hidden');
-        document.getElementById('slipSection').classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
-
-    function downloadSlip() {
-        const element = document.getElementById('captureArea');
-        html2canvas(element).then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'Muhammad-Collections-Slip.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    }
-
-    function sendToWhatsApp() {
-        const id = document.getElementById('slipID').innerText;
-        const name = document.getElementById('slipName').innerText;
-        const total = document.getElementById('slipTotal').innerText;
-        const address = document.getElementById('address').value;
-
-        // Email Backup
-        emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-            order_id: id,
-            customer_name: name,
-            customer_address: address,
-            final_bill: total
-        });
-
-        // WhatsApp Text
-        const message = `*NEW ORDER: ${id}*%0A` +
-                        `--------------------------%0A` +
-                        `*Customer:* ${name}%0A` +
-                        `*Color:* ${document.getElementById('slipColor').innerText}%0A` +
-                        `*Qty:* ${document.getElementById('slipQty').innerText}%0A` +
-                        `*Address:* ${address}%0A` +
-                        `*Total:* ${total}%0A` +
-                        `--------------------------%0A` +
-                        `Slip has been saved. Please confirm my order!`;
-
-        window.open(`https://wa.me/${MY_PHONE}?text=${message}`, '_blank');
-    }
-</script>
+    <footer>
+        <p>&copy; 2026 Muhammad Collections. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a> | <a href="#">TikTok</a> | <a href="#">Instagram</a>
+        </div>
+    </footer>
 
 </body>
 </html>
+
